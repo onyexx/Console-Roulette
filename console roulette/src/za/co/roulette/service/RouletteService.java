@@ -2,7 +2,9 @@ package za.co.roulette.service;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -81,7 +83,80 @@ public class RouletteService {
 	}
 
 	private ResultRoulette forNumber(double betValue, int betNumber, int spin, Player player) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(betNumber == spin) {
+			bet.setBetNumber(betNumber);
+			
+			bet.setValue(betValue *36);
+			
+			player.setBet(bet);
+			
+			resultRoulette = new ResultRoulette(player.getName(),"Number","Win's",bet.getValue(),betValue);
+			
+		}
+		checkPlayersStatistics(resultRoulettes,player);
+		return resultRoulette;
+		
 	}
+	// Checking the statistic per player
+			public void checkPlayersStatistics(List<ResultRoulette> resultRoulettes,Player player) {
+				
+				int size = 0;
+				double totalWin = 0;
+				double totalBet = 0;
+				
+				while(resultRoulettes.size() > size) {
+					if(resultRoulettes.get(size).getPlayer().contentEquals(player.getName())) {
+						
+						totalWin += resultRoulettes.get(size).getWinnings();
+						totalBet += resultRoulettes.get(size).getAmountBet().doubleValue();
+						
+						player.setTotalWin(totalWin);
+						player.setTotalBet(totalBet);
+					}
+					size++;
+					
+				}
+				betPlayers.put(player.getName(),player);
+				
+				//adding past records
+				addingOldRecord(this.betPlayers);
+				
+			}
+			//adding all past Records
+            @SuppressWarnings("unlikely-arg-type")
+			private void addingOldRecord(Map<String, Player> betPlayers) {
+            	
+            	File file = new File("file2.text");
+            	
+            	try {
+            		BufferedReader read = new BufferedReader(new FileReader(file));
+            		
+            		for(String key : betPlayers.keySet()) {
+            			
+            			while(read.ready()) {
+            				String first[] = read.readLine().split(",");
+            				
+            				if(betPlayers.get(key).getName().equals(first[0])) {
+            					double totalBet = Double.valueOf(first[2]);
+            					double totalWins = Double.valueOf(first[1]);
+            					
+            					betPlayers.get(key).setTotalBet(betPlayers.get(key).getTotalBet() + totalBet);
+            					betPlayers.get(key).setTotalWin(betPlayers.get(key).getTotalWin() + totalWins);
+            					
+            				}
+            			}
+            		}
+            		this.betPlayers = betPlayers;
+            		
+            	}catch(FileNotFoundException e) {
+            		e.printStackTrace();
+            		
+            	}catch (IOException e) {
+					
+            		e.printStackTrace();
+				}
+			
+				
+			}
 }
