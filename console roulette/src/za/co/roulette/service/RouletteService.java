@@ -48,4 +48,11 @@ public class RouletteService {
 		return players;
 	}
 
+	//Get a specific player
+	public Player validatePlayer(int betTy) {
+		
+		Player player = players.get(betTy);
+		return player;
+	}
+	
 }
