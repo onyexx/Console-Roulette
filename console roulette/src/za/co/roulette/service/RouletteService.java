@@ -55,4 +55,33 @@ public class RouletteService {
 		return player;
 	}
 	
+	//TO PLACE A BET
+	public ResultRoulette placeBet(int spin,double betValue,int betType,int betNumber,Player player) {
+		
+		String bettyp = (betType == 1)? "EVEN" : "ODD";
+		
+		//FOR EVEN
+		if(betType == 1 && spin % 2 == 0) {
+			bet.setBetType(bet.getBetType().EVEN);
+			bet.setValue(betValue * 2);
+			player.setBet(bet);
+			
+			resultRoulette = new ResultRoulette(player.getName(),bet.getBetType().name(),"win's",bet.getValue(),betValue);
+		
+		}else if(betNumber == 3) {
+			resultRoulette = this.forNumber(betValue,betNumber,spin,player);
+			
+		}else {
+			resultRoulette = new ResultRoulette(player.getName(),bettyp,"Losse",0.0 ,betValue);
+		}
+		
+		resultRoulettes.add(resultRoulette);
+		return resultRoulette;
+		
+	}
+
+	private ResultRoulette forNumber(double betValue, int betNumber, int spin, Player player) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
