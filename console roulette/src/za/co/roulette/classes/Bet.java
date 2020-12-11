@@ -1,11 +1,11 @@
 package za.co.roulette.classes;
 
 public class Bet {
-	
+
 	private Double value;
 	private Integer betNumber;
 	private BetType betType;
-	
+
 	public Bet() {
 		super();
 	}
@@ -41,11 +41,8 @@ public class Bet {
 		this.betType = betType;
 	}
 
-	
 	public String toString() {
 		return "Bet [value=" + value + ", betNumber=" + betNumber + ", betType=" + betType + "]";
 	}
-	
-	
 
 }

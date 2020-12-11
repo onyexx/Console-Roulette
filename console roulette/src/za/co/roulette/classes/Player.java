@@ -1,17 +1,18 @@
 package za.co.roulette.classes;
 
 public class Player {
-	
+
 	private String name;
 	private Double totalWin;
 	private Double totalBet;
 	private Bet bet;
-	
-	//constructors from super class
+
+	// constructors from super class
 	public Player() {
 		super();
 	}
-        //constructor using field
+
+	// constructor using field
 	public Player(String name, Double totalWin, Double totalBet, Bet bet) {
 		super();
 		this.name = name;
@@ -19,7 +20,8 @@ public class Player {
 		this.totalBet = totalBet;
 		this.bet = bet;
 	}
-       //getters and setters for name,bet,totalWin,totalBet
+
+	// getters and setters for name,bet,totalWin,totalBet
 	public String getName() {
 		return name;
 	}
@@ -52,11 +54,9 @@ public class Player {
 		this.bet = bet;
 	}
 
-     //toString method for totalWin,bet,name,totalBet
+	// toString method for totalWin,bet,name,totalBet
 	public String toString() {
 		return "Player [name=" + name + ", totalWin=" + totalWin + ", totalBet=" + totalBet + ", bet=" + bet + "]";
 	}
-	
-	
 
 }
