@@ -122,7 +122,7 @@ public class RouletteTest {
 					resultRoulettes.get(control).getOutCome(), resultRoulettes.get(control).getWinnings());
 			control++;
 		}
-		System.out.println("\n \n           outprint2");
+		System.out.println("\n\n           output2");
 		line();
 		printHeader2();
 		control = 0;
@@ -144,7 +144,7 @@ public class RouletteTest {
 	}
 
 	static void printRow1(String player, String bet, String outcome, double winnings) {
-		System.out.printf("%-24s \t %-24s \t %-24 \t %-24 \n ", player, bet, outcome, winnings);
+		System.out.printf("%-23s \t %-23s \t %-23s \t %-23s \n ", player, bet, outcome, winnings);
 
 	}
 
@@ -153,7 +153,7 @@ public class RouletteTest {
 	}
 
 	static void printRow2(String player, double totalWins, double totalBet) {
-		System.out.printf("%-24s \t %-24s \t %-24s \n", player, totalWins, totalBet);
+		System.out.printf("%-23s \t %-23s \t %-23s \n", player, totalWins, totalBet);
 	}
 
 }
